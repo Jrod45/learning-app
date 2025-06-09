@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import '../assets/styles/Homepage.css'
+import React, { useState, useMemo, useCallback } from 'react';
+import '../assets/styles/Homepage.css';
 
 const Homepage = () => {
   const [user] = useState({
@@ -34,23 +34,8 @@ const Homepage = () => {
     '📖 Vocab Master'
   ]);
 
-  const handleModuleClick = (moduleName) => {
-    alert(`Opening ${moduleName} module...`);
-  };
-
-  const handleContinueLearning = () => {
-    alert('Continuing to your next lesson...');
-  };
-
-  const handleSettingsClick = () => {
-    alert('Settings panel would open here!');
-  };
-
-  const handleNavClick = (section) => {
-    alert(`Navigating to ${section}...`);
-  };
-
-  const modules = [
+  // Memoize static data to prevent recreating on each render
+  const modules = useMemo(() => [
     {
       icon: '📚',
       title: 'Vocabulary Review',
@@ -62,7 +47,7 @@ const Homepage = () => {
       description: 'Master grammar rules with targeted exercises'
     },
     {
-      icon: '🎧',
+      icon: '🔊',
       title: 'Listening Exercise',
       description: 'Improve comprehension with audio challenges'
     },
@@ -71,7 +56,79 @@ const Homepage = () => {
       title: 'Pronunciation',
       description: 'Perfect your accent with AI feedback'
     }
-  ];
+  ], []);
+
+  // Memoize expensive calculations
+  const progressCalculations = useMemo(() => {
+    const circumference = 220;
+    const offset = circumference - (circumference * user.dailyGoalProgress / 100);
+    const formattedXP = user.xp.toLocaleString();
+    const userInitials = user.name.split(' ').map(n => n[0]).join('');
+    
+    return { offset, formattedXP, userInitials };
+  }, [user.dailyGoalProgress, user.xp, user.name]);
+
+  // Use useCallback for event handlers to prevent unnecessary re-renders
+  const handleModuleClick = useCallback((moduleName) => {
+    alert(`Opening ${moduleName} module...`);
+  }, []);
+
+  const handleContinueLearning = useCallback(() => {
+    alert('Continuing to your next lesson...');
+  }, []);
+
+  const handleSettingsClick = useCallback(() => {
+    alert('Settings panel would open here!');
+  }, []);
+
+  const handleNavClick = useCallback((section) => {
+    alert(`Navigating to ${section}...`);
+  }, []);
+
+  // Memoize components that don't need frequent updates
+  const StatsGrid = useMemo(() => (
+    <div className="stats-grid">
+      <div className="stat-item">
+        <span>Words Learned</span>
+        <span className="stat-value">{user.wordsLearned}</span>
+      </div>
+      <div className="stat-item">
+        <span>Lessons Completed</span>
+        <span className="stat-value">{user.lessonsCompleted}</span>
+      </div>
+      <div className="stat-item">
+        <span>Total XP</span>
+        <span className="stat-value">{progressCalculations.formattedXP}</span>
+      </div>
+    </div>
+  ), [user.wordsLearned, user.lessonsCompleted, progressCalculations.formattedXP]);
+
+  const ProgressRing = useMemo(() => (
+    <div className="progress-ring">
+      <svg width="80" height="80" className="progress-circle">
+        <circle 
+          cx="40" 
+          cy="40" 
+          r="35" 
+          stroke="#e5e7eb" 
+          strokeWidth="6" 
+          fill="none"
+        />
+        <circle 
+          cx="40" 
+          cy="40" 
+          r="35" 
+          stroke="#6366f1" 
+          strokeWidth="6" 
+          fill="none" 
+          strokeDasharray="220" 
+          strokeDashoffset={progressCalculations.offset}
+          strokeLinecap="round"
+        />
+      </svg>
+      <div className="progress-text">{user.dailyGoalProgress}%</div>
+    </div>
+  ), [progressCalculations.offset, user.dailyGoalProgress]);
 
   return (
     <div className="container">
@@ -81,10 +138,12 @@ const Homepage = () => {
         <div className="user-profile">
           <div className="user-info">
             <h3>{user.name}</h3>
-            <div className="user-level">{user.level} • {user.xp.toLocaleString()} XP</div>
+            <div className="user-level">
+              {user.level} • {progressCalculations.formattedXP} XP
+            </div>
           </div>
           <div className="profile-pic">
-            {user.name.split(' ').map(n => n[0]).join('')}
+            {progressCalculations.userInitials}
           </div>
           <button className="settings-btn" onClick={handleSettingsClick}>
             ⚙️
@@ -112,46 +171,9 @@ const Homepage = () => {
               <div className="goal-title">Daily Goal</div>
               <div className="streak">🔥 {user.streak} days</div>
             </div>
-            <div className="progress-ring">
-              <svg width="80" height="80" className="progress-circle">
-                <circle 
-                  cx="40" 
-                  cy="40" 
-                  r="35" 
-                  stroke="#e5e7eb" 
-                  strokeWidth="6" 
-                  fill="none"
-                />
-                <circle 
-                  cx="40" 
-                  cy="40" 
-                  r="35" 
-                  stroke="#6366f1" 
-                  strokeWidth="6" 
-                  fill="none" 
-                  strokeDasharray="220" 
-                  strokeDashoffset={220 - (220 * user.dailyGoalProgress / 100)} 
-                  strokeLinecap="round"
-                />
-              </svg>
-              <div className="progress-text">{user.dailyGoalProgress}%</div>
-            </div>
+            {ProgressRing}
           </div>
-
-          <div className="stats-grid">
-            <div className="stat-item">
-              <span>Words Learned</span>
-              <span className="stat-value">{user.wordsLearned}</span>
-            </div>
-            <div className="stat-item">
-              <span>Lessons Completed</span>
-              <span className="stat-value">{user.lessonsCompleted}</span>
-            </div>
-            <div className="stat-item">
-              <span>Total XP</span>
-              <span className="stat-value">{user.xp.toLocaleString()}</span>
-            </div>
-          </div>
+          {StatsGrid}
         </div>
       </div>
 
@@ -193,7 +215,9 @@ const Homepage = () => {
             {leaderboard.map((player, index) => (
               <div key={index} className="leaderboard-item">
                 <span>{player.emoji} {player.name}</span>
-                <span className="leaderboard-xp">{player.xp.toLocaleString()} XP</span>
+                <span className="leaderboard-xp">
+                  {player.xp.toLocaleString()} XP
+                </span>
               </div>
             ))}
           </div>
