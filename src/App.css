@@ -8,6 +8,7 @@
 .title-container{
   display: flex;
   flex-direction: column;
+  min-width: 380px;
   width: 85%;
   justify-content: center;
 }
@@ -26,4 +27,11 @@
   position: relative;
   bottom: 0;
   width: 100%;
+}
+
+/* Hide the footer in tablet and mobile mode */
+@media (max-width: 900px) {
+  .footer {
+    display: none;
+  }
 }

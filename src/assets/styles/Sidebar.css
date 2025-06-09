@@ -4,7 +4,7 @@
   align-self: flex-start;
   padding: 10px;
    margin: 20px;
-  width: 15%;
+  min-width: 200px;
   background-color: #6a66c5; /* Matches homepage background */
   color: white;
   border-radius: 15px;
@@ -37,4 +37,53 @@
   padding: 8px;
   border-radius: 12px;
   font-weight: bolder;
+}
+
+/* Re-implemented responsive styles for the bottom nav bar */
+@media (max-width: 900px) {
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    border-radius: 0;
+    padding: 10px 0;
+    z-index: 10; /* Ensure it appears on top */
+  }
+
+  .sidebar-menu-title {
+    display: none;
+  }
+
+  .sidebar-menu-items-list {
+    flex-direction: row;
+    margin-top: 0;
+    gap: 10px;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .sidebar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex: 1;
+    padding: 5px;
+  }
+
+  .icon {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  .label {
+    font-size: 12px;
+  }
 }
