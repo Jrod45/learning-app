@@ -77,7 +77,7 @@ const Homepage = () => {
     <div className="container">
       {/* Header */}
       <div className="header">
-        <div className="logo">LingoFlow</div>
+        <div className="logo">Wise Language Mentor</div>
         <div className="user-profile">
           <div className="user-info">
             <h3>{user.name}</h3>
