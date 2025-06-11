@@ -1,0 +1,262 @@
+
+        .settings-overlay {
+          display: none;
+        }
+
+        .settings-page {
+          min-width: 380px;
+          width: 100%;
+          margin: 0 auto;
+          padding: 20px;
+          min-height: 100vh;
+          background: linear-gradient(135deg, #667eea 0%, #8b5cf6 100%);
+        }
+
+        .settings-modal {
+          position: relative;
+          top: auto;
+          left: auto;
+          transform: none;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          border-radius: 25px;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+          width: 100%;
+          max-width: none;
+          max-height: none;
+          overflow: visible;
+          z-index: auto;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .settings-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 25px 30px;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          background: rgba(255, 255, 255, 0.8);
+          border-top-left-radius: 25px;
+          border-top-right-radius: 25px;
+        }
+
+        .settings-header h2 {
+          font-size: 24px;
+          font-weight: 600;
+          color: #333;
+          margin: 0;
+        }
+
+        .close-btn {
+          background: #f3f4f6;
+          border: none;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          color: #6b7280;
+        }
+
+        .close-btn:hover {
+          background: #e5e7eb;
+          transform: scale(1.1);
+        }
+
+        .settings-content {
+          padding: 20px 30px;
+          max-height: none;
+          overflow-y: visible;
+        }
+
+        .settings-section {
+          margin-bottom: 30px;
+        }
+
+        .settings-section:last-child {
+          margin-bottom: 0;
+        }
+
+        .settings-section-header {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 20px;
+          color: #6366f1;
+        }
+
+        .settings-section-header h3 {
+          font-size: 18px;
+          font-weight: 600;
+          margin: 0;
+        }
+
+        .settings-section-content {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .settings-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 15px 0;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .settings-row:last-child {
+          border-bottom: none;
+        }
+
+        .settings-row-content {
+          flex: 1;
+        }
+
+        .settings-label {
+          font-size: 16px;
+          font-weight: 500;
+          color: #333;
+          margin-bottom: 2px;
+        }
+
+        .settings-description {
+          font-size: 14px;
+          color: #6b7280;
+        }
+
+        .settings-control {
+          margin-left: 20px;
+        }
+
+        .toggle-switch {
+          width: 50px;
+          height: 28px;
+          background: #e5e7eb;
+          border-radius: 20px;
+          position: relative;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .toggle-switch.active {
+          background: #6366f1;
+        }
+
+        .toggle-slider {
+          width: 24px;
+          height: 24px;
+          background: white;
+          border-radius: 50%;
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-switch.active .toggle-slider {
+          transform: translateX(22px);
+        }
+
+        .settings-select {
+          background: rgba(255, 255, 255, 0.8);
+          border: 1px solid #e5e7eb;
+          border-radius: 10px;
+          padding: 8px 12px;
+          font-size: 14px;
+          color: #333;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          min-width: 120px;
+        }
+
+        .settings-select:focus {
+          outline: none;
+          border-color: #6366f1;
+          box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .settings-footer {
+          padding: 20px 30px;
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+          background: rgba(255, 255, 255, 0.8);
+          display: flex;
+          justify-content: flex-end;
+          border-bottom-left-radius: 25px;
+          border-bottom-right-radius: 25px;
+        }
+
+        .save-btn {
+          background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+          color: white;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 15px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .save-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Scrollbar Styling */
+        .settings-content::-webkit-scrollbar {
+          width: 6px;
+        }
+
+        .settings-content::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.05);
+          border-radius: 3px;
+        }
+
+        .settings-content::-webkit-scrollbar-thumb {
+          background: rgba(99, 102, 241, 0.3);
+          border-radius: 3px;
+        }
+
+        .settings-content::-webkit-scrollbar-thumb:hover {
+          background: rgba(99, 102, 241, 0.5);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 900px) {
+          .settings-page {
+            padding: 10px;
+            margin-bottom: 80px;
+          }
+
+          .settings-modal {
+            border-radius: 20px;
+          }
+
+          .settings-header,
+          .settings-content,
+          .settings-footer {
+            padding-left: 20px;
+            padding-right: 20px;
+          }
+
+          .settings-row {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 10px;
+          }
+
+          .settings-control {
+            margin-left: 0;
+            display: flex;
+            justify-content: flex-end;
+          }
+        }
+      

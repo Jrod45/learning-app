@@ -1,17 +1,14 @@
+import { Link } from 'react-router-dom';
 import '../assets/styles/Sidebar.css';
 
 const Sidebar = ({ activeSection = 'home', onSectionChange }) => {
   const navigationItems = [
-    { icon: '🏠', label: 'Home', section: 'home' },
-    { icon: '📚', label: 'Lessons', section: 'lessons' },
-    { icon: '📊', label: 'Progress', section: 'progress' },
-    { icon: '🏆', label: 'Achievements', section: 'achievements' },
-    { icon: '⚙️', label: 'Settings', section: 'settings' }
+    { icon: '🏠', label: 'Home', section: 'home', path: '/' },
+    { icon: '📚', label: 'Lessons', section: 'lessons', path: '/lessons' },
+    { icon: '📊', label: 'Progress', section: 'progress', path: '/progress' },
+    { icon: '🏆', label: 'Achievements', section: 'achievements', path: '/achievements' },
+    { icon: '⚙️', label: 'Settings', section: 'settings', path: '/settings' }
   ];
- 
-  const handleClick = (section) => {
-    if (onSectionChange) onSectionChange(section);
-  };
 
   return (
     <div className="sidebar">
@@ -22,10 +19,11 @@ const Sidebar = ({ activeSection = 'home', onSectionChange }) => {
           <li
             key={item.section}
             className={`sidebar-item ${activeSection === item.section ? 'active' : ''}`}
-            onClick={() => handleClick(item.section)}
           >
-            <span className="icon">{item.icon}</span>
-            <span className="label">{item.label}</span>
+            <Link to={item.path} className="sidebar-link">
+              <span className="icon">{item.icon}</span>
+              <span className="label">{item.label}</span>
+            </Link>
           </li>
         ))}
       </ul>

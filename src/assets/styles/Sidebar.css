@@ -15,6 +15,7 @@
   margin-top: 20px;
   text-align: center;
   font-weight: bold;
+  font-size: 30px;
   color: white;
 }
 
@@ -29,6 +30,7 @@
   cursor: pointer;
   color: white;
   transition: color 0.3s;
+  align-items: center;
 }
 
 .sidebar-item:hover {
@@ -63,8 +65,8 @@
   .sidebar-menu-items-list {
     flex-direction: row;
     margin-top: 0;
-    gap: 10px;
-    justify-content: space-between;
+    gap: 8px;
+    justify-content: space-evenly;
     width: 100%;
   }
 
@@ -84,6 +86,7 @@
   }
 
   .label {
-    font-size: 12px;
+    font-size: 0.9rem;
+    display: block;
   }
 }

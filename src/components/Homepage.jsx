@@ -118,7 +118,7 @@ const Homepage = () => {
           cx="40" 
           cy="40" 
           r="35" 
-          stroke="#6366f1" 
+          stroke= "#6366f1" 
           strokeWidth="6" 
           fill="none" 
           strokeDasharray="220" 
@@ -126,7 +126,7 @@ const Homepage = () => {
           strokeLinecap="round"
         />
       </svg>
-      <div className="progress-text">{user.dailyGoalProgress}%</div>
+      <div className="progress-text"><h3>{user.dailyGoalProgress}%</h3></div>
     </div>
   ), [progressCalculations.offset, user.dailyGoalProgress]);
 
