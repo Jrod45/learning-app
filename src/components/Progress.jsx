@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { ChartBarIcon, LightningBoltIcon } from '@heroicons/react/solid';
 import '../assets/styles/Progress.css';
 
 const Progress = () => {
@@ -55,7 +56,9 @@ const Progress = () => {
       {/* Overview Stats */}
       <div className="stats-overview">
         <div className="stat-card primary">
-          <div className="stat-icon">⚡</div>
+          <div className="stat-icon">
+            <ChartBarIcon className="h-6 w-6 text-yellow-500" />
+          </div>
           <div className="stat-content">
             <div className="stat-number">{stats.totalXP.toLocaleString()}</div>
             <div className="stat-label">Total XP</div>
@@ -79,7 +82,9 @@ const Progress = () => {
         </div>
         
         <div className="stat-card">
-          <div className="stat-icon">🔥</div>
+          <div className="stat-icon">
+            <LightningBoltIcon className="h-6 w-6 text-red-500" />
+          </div>
           <div className="stat-content">
             <div className="stat-number">{stats.currentStreak}</div>
             <div className="stat-label">Day Streak</div>

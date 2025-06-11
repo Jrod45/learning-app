@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { CheckCircleIcon, LockClosedIcon } from '@heroicons/react/solid';
 import '../assets/styles/Achievements.css';
 
 const Achievements = () => {
@@ -234,7 +235,11 @@ const Achievements = () => {
           >
             <div className="achievement-icon-container">
               <div className="achievement-icon">
-                {achievement.earned ? achievement.icon : '🔒'}
+                {achievement.earned ? (
+                  <CheckCircleIcon className="h-8 w-8 text-green-500" />
+                ) : (
+                  <LockClosedIcon className="h-8 w-8 text-gray-400" />
+                )}
               </div>
               {achievement.earned && <div className="earned-badge">✓</div>}
             </div>
@@ -254,13 +259,13 @@ const Achievements = () => {
                 <div className="achievement-progress">
                   {achievement.progress !== undefined ? (
                     <>
-                      <div className="progress-bar">
+                      <div className="prog-bar">
                         <div 
-                          className="progress-fill"
+                          className="prog-fill"
                           style={{ width: `${achievement.progress}%` }}
                         ></div>
                       </div>
-                      <div className="progress-text">{achievement.progress}% Complete</div>
+                      <div className="prog-text">{achievement.progress}% Complete</div>
                     </>
                   ) : (
                     <div className="locked-text">Keep learning to unlock!</div>

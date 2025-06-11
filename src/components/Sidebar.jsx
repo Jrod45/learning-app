@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
+import { HomeIcon, AcademicCapIcon, ChartBarIcon, CogIcon } from '@heroicons/react/solid';
 import '../assets/styles/Sidebar.css';
 
 const Sidebar = ({ activeSection = 'home', onSectionChange }) => {
   const navigationItems = [
-    { icon: '🏠', label: 'Home', section: 'home', path: '/' },
-    { icon: '📚', label: 'Lessons', section: 'lessons', path: '/lessons' },
-    { icon: '📊', label: 'Progress', section: 'progress', path: '/progress' },
-    { icon: '🏆', label: 'Achievements', section: 'achievements', path: '/achievements' },
-    { icon: '⚙️', label: 'Settings', section: 'settings', path: '/settings' }
+    { icon: <HomeIcon className="h-6 w-6" />, label: 'Home', section: 'home', path: '/' },
+    { icon: <AcademicCapIcon className="h-6 w-6" />, label: 'Lessons', section: 'lessons', path: '/lessons' },
+    { icon: <ChartBarIcon className="h-6 w-6" />, label: 'Progress', section: 'progress', path: '/progress' },
+    { icon: <AcademicCapIcon className="h-6 w-6" />, label: 'Achievements', section: 'achievements', path: '/achievements' },
+    { icon: <CogIcon className="h-6 w-6" />, label: 'Settings', section: 'settings', path: '/settings' }
   ];
 
   return (

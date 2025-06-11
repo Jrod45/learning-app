@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { BookOpenIcon, CheckCircleIcon } from '@heroicons/react/solid';
 import '../assets/styles/Lessons.css';
 
 const Lessons = () => {

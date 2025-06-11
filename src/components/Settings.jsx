@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BellIcon, UserIcon, MoonIcon, ShieldCheckIcon } from '@heroicons/react/solid';
 import '../assets/styles/Settings.css'
 
 const Settings = () => {
@@ -59,7 +60,7 @@ const Settings = () => {
   const SettingsSection = ({ icon: Icon, title, children }) => (
     <div className="settings-section">
       <div className="settings-section-header">
-        <Icon size={20} />
+        <Icon className="h-6 w-6 text-gray-500" />
         <h3>{title}</h3>
       </div>
       <div className="settings-section-content">
@@ -88,7 +89,7 @@ const Settings = () => {
         </div>
 
         <div className="settings-content">
-          <SettingsSection icon={() => '🔔'} title="Notifications">
+          <SettingsSection icon={BellIcon} title="Notifications">
             <SettingsRow 
               label="Daily Reminders" 
               description="Get reminded to practice daily"
@@ -127,7 +128,7 @@ const Settings = () => {
             </SettingsRow>
           </SettingsSection>
 
-          <SettingsSection icon={() => '📘'} title="Learning Preferences">
+          <SettingsSection icon={UserIcon} title="Learning Preferences">
             <SettingsRow 
               label="Daily Goal" 
               description="Minutes per day"
@@ -180,7 +181,7 @@ const Settings = () => {
             </SettingsRow>
           </SettingsSection>
 
-          <SettingsSection icon={() => '🌙'} title="Appearance">
+          <SettingsSection icon={MoonIcon} title="Appearance">
             <SettingsRow 
               label="Dark Mode" 
               description="Switch to dark theme"
@@ -222,7 +223,7 @@ const Settings = () => {
             </SettingsRow>
           </SettingsSection>
 
-          <SettingsSection icon={() => '🛡️'} title="Privacy & Security">
+          <SettingsSection icon={ShieldCheckIcon} title="Privacy & Security">
             <SettingsRow 
               label="Profile Visibility" 
               description="Who can see your profile"

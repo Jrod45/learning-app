@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react';
+import { HomeIcon, AcademicCapIcon, StarIcon, ArrowCircleRightIcon, BookOpenIcon } from '@heroicons/react/solid';
 import '../assets/styles/Homepage.css';
 
 const Homepage = () => {
@@ -29,9 +30,9 @@ const Homepage = () => {
   ]);
 
   const [achievements] = useState([
-    '🏆 Week Warrior',
-    '🎯 Perfect Score',
-    '📖 Vocab Master'
+    <StarIcon className="h-6 w-6 text-yellow-500" />, 'Week Warrior',
+    <ArrowCircleRightIcon className="h-6 w-6 text-red-500" />, 'Perfect Score',
+    <BookOpenIcon className="h-6 w-6 text-blue-500" />, 'Vocab Master'
   ]);
 
   // Memoize static data to prevent recreating on each render
