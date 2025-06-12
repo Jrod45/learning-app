@@ -1,17 +1,23 @@
 import React, { useState, useMemo } from 'react';
-import { ChartBarIcon, LightningBoltIcon } from '@heroicons/react/solid';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import FlashOnIcon from '@mui/icons-material/FlashOn';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import TargetIcon from '@mui/icons-material/TrackChanges'; // closest to Target
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import '../assets/styles/Progress.css';
 
 const Progress = () => {
   const [selectedPeriod, setSelectedPeriod] = useState('week');
-  
+
   const stats = useMemo(() => ({
     totalXP: 2450,
     wordsLearned: 347,
     lessonsCompleted: 28,
     currentStreak: 21,
     longestStreak: 45,
-    timeSpent: 124, // hours
+    timeSpent: 124,
     averageAccuracy: 87,
     weeklyGoal: 300,
     weeklyProgress: 270
@@ -36,10 +42,10 @@ const Progress = () => {
   ], []);
 
   const achievements = useMemo(() => [
-    { name: 'Week Warrior', description: 'Complete 7 days in a row', date: '2 days ago', icon: '🏆' },
-    { name: 'Vocab Master', description: 'Learn 300+ words', date: '1 week ago', icon: '📚' },
-    { name: 'Perfect Score', description: 'Get 100% on a lesson', date: '3 days ago', icon: '🎯' },
-    { name: 'Early Bird', description: 'Study before 8 AM', date: '5 days ago', icon: '🌅' }
+    { name: 'Week Warrior', description: 'Complete 7 days in a row', date: '2 days ago', icon: <EmojiEventsIcon fontSize="medium" /> },
+    { name: 'Vocab Master', description: 'Learn 300+ words', date: '1 week ago', icon: <MenuBookIcon fontSize="medium" /> },
+    { name: 'Perfect Score', description: 'Get 100% on a lesson', date: '3 days ago', icon: <TargetIcon fontSize="medium" /> },
+    { name: 'Early Bird', description: 'Study before 8 AM', date: '5 days ago', icon: <WbSunnyIcon fontSize="medium" /> }
   ], []);
 
   const handlePeriodChange = (period) => {
@@ -57,33 +63,33 @@ const Progress = () => {
       <div className="stats-overview">
         <div className="stat-card primary">
           <div className="stat-icon">
-            <ChartBarIcon className="h-6 w-6 text-yellow-500" />
+            <BarChartIcon style={{ color: '#facc15' }} fontSize="large" />
           </div>
           <div className="stat-content">
             <div className="stat-number">{stats.totalXP.toLocaleString()}</div>
             <div className="stat-label">Total XP</div>
           </div>
         </div>
-        
+
         <div className="stat-card">
-          <div className="stat-icon">📖</div>
+          <div className="stat-icon"><MenuBookIcon fontSize="large" /></div>
           <div className="stat-content">
             <div className="stat-number">{stats.wordsLearned}</div>
             <div className="stat-label">Words Learned</div>
           </div>
         </div>
-        
+
         <div className="stat-card">
-          <div className="stat-icon">✅</div>
+          <div className="stat-icon"><CheckCircleIcon fontSize="large" /></div>
           <div className="stat-content">
             <div className="stat-number">{stats.lessonsCompleted}</div>
             <div className="stat-label">Lessons Completed</div>
           </div>
         </div>
-        
+
         <div className="stat-card">
           <div className="stat-icon">
-            <LightningBoltIcon className="h-6 w-6 text-red-500" />
+            <FlashOnIcon style={{ color: '#ef4444' }} fontSize="large" />
           </div>
           <div className="stat-content">
             <div className="stat-number">{stats.currentStreak}</div>
@@ -118,21 +124,11 @@ const Progress = () => {
         <div className="section-header">
           <h2>Weekly Activity</h2>
           <div className="period-selector">
-            <button 
-              className={selectedPeriod === 'week' ? 'active' : ''}
-              onClick={() => handlePeriodChange('week')}
-            >
-              Week
-            </button>
-            <button 
-              className={selectedPeriod === 'month' ? 'active' : ''}
-              onClick={() => handlePeriodChange('month')}
-            >
-              Month
-            </button>
+            <button className={selectedPeriod === 'week' ? 'active' : ''} onClick={() => handlePeriodChange('week')}>Week</button>
+            <button className={selectedPeriod === 'month' ? 'active' : ''} onClick={() => handlePeriodChange('month')}>Month</button>
           </div>
         </div>
-        
+
         <div className="activity-chart">
           {weeklyData.map((day, index) => (
             <div key={index} className="day-column">

@@ -1,14 +1,17 @@
 import { Link } from 'react-router-dom';
-import { HomeIcon, AcademicCapIcon, ChartBarIcon, CogIcon } from '@heroicons/react/solid';
+import HomeIcon from '@mui/icons-material/Home';
+import SchoolIcon from '@mui/icons-material/School';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import SettingsIcon from '@mui/icons-material/Settings';
 import '../assets/styles/Sidebar.css';
 
 const Sidebar = ({ activeSection = 'home', onSectionChange }) => {
   const navigationItems = [
-    { icon: <HomeIcon className="h-6 w-6" />, label: 'Home', section: 'home', path: '/' },
-    { icon: <AcademicCapIcon className="h-6 w-6" />, label: 'Lessons', section: 'lessons', path: '/lessons' },
-    { icon: <ChartBarIcon className="h-6 w-6" />, label: 'Progress', section: 'progress', path: '/progress' },
-    { icon: <AcademicCapIcon className="h-6 w-6" />, label: 'Achievements', section: 'achievements', path: '/achievements' },
-    { icon: <CogIcon className="h-6 w-6" />, label: 'Settings', section: 'settings', path: '/settings' }
+    { icon: <HomeIcon className="icon" />, label: 'Home', section: 'home', path: '/' },
+    { icon: <SchoolIcon className="icon" />, label: 'Lessons', section: 'lessons', path: '/lessons' },
+    { icon: <BarChartIcon className="icon" />, label: 'Progress', section: 'progress', path: '/progress' },
+    { icon: <SchoolIcon className="icon" />, label: 'Achievements', section: 'achievements', path: '/achievements' },
+    { icon: <SettingsIcon className="icon" />, label: 'Settings', section: 'settings', path: '/settings' }
   ];
 
   return (

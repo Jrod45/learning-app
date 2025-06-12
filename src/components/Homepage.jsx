@@ -1,6 +1,19 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { HomeIcon, AcademicCapIcon, StarIcon, ArrowCircleRightIcon, BookOpenIcon } from '@heroicons/react/solid';
 import '../assets/styles/Homepage.css';
+
+// MUI Icons
+import SettingsIcon from '@mui/icons-material/Settings';
+import FlashOnIcon from '@mui/icons-material/FlashOn';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import StarIcon from '@mui/icons-material/Star';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
+import MicIcon from '@mui/icons-material/Mic';
+import PieChartIcon from '@mui/icons-material/PieChart';
+import PublicIcon from '@mui/icons-material/Public';
+import ViewModuleIcon from '@mui/icons-material/ViewModule';
 
 const Homepage = () => {
   const [user] = useState({
@@ -24,52 +37,48 @@ const Homepage = () => {
   });
 
   const [leaderboard] = useState([
-    { rank: 1, name: 'Maria Santos', xp: 3250, emoji: '🥇' },
-    { rank: 2, name: 'You', xp: 2450, emoji: '🥈' },
-    { rank: 3, name: 'David Kim', xp: 2180, emoji: '🥉' }
+    { rank: 1, name: 'Maria Santos', xp: 3250, icon: <EmojiEventsIcon className="h-6 w-6" style={{ color: '#FFD700' }} /> },
+    { rank: 2, name: 'You', xp: 2450, icon: <EmojiEventsIcon className="h-6 w-6" style={{ color: '#00C853' }} /> },
+    { rank: 3, name: 'David Kim', xp: 2180, icon: <EmojiEventsIcon className="h-6 w-6" style={{ color: '#FF9100' }} /> }
   ]);
 
   const [achievements] = useState([
-    <StarIcon className="h-6 w-6 text-yellow-500" />, 'Week Warrior',
-    <ArrowCircleRightIcon className="h-6 w-6 text-red-500" />, 'Perfect Score',
-    <BookOpenIcon className="h-6 w-6 text-blue-500" />, 'Vocab Master'
+    <StarIcon className="h-6 w-6" style={{ color: '#00C853' }} />, 'Week Warrior',
+    <ArrowForwardIosIcon className="h-6 w-6" style={{ color: '#EF5350' }} />, 'Perfect Score',
+    <MenuBookIcon className="h-6 w-6" style={{ color: '#42A5F5' }} />, 'Vocab Master'
   ]);
 
-  // Memoize static data to prevent recreating on each render
   const modules = useMemo(() => [
     {
-      icon: '📚',
+      icon: <MenuBookIcon className="h-6 w-6" style={{ color: 'white' }} />,
       title: 'Vocabulary Review',
       description: 'Practice your recent words with smart flashcards'
     },
     {
-      icon: '✏️',
+      icon: <EditNoteIcon className="h-6 w-6" style={{ color: 'white' }} />,
       title: 'Grammar Practice',
       description: 'Master grammar rules with targeted exercises'
     },
     {
-      icon: '🔊',
+      icon: <HeadphonesIcon className="h-6 w-6" style={{ color: 'white' }} />,
       title: 'Listening Exercise',
       description: 'Improve comprehension with audio challenges'
     },
     {
-      icon: '🗣️',
+      icon: <MicIcon className="h-6 w-6" style={{ color: 'white' }} />,
       title: 'Pronunciation',
       description: 'Perfect your accent with AI feedback'
     }
   ], []);
 
-  // Memoize expensive calculations
   const progressCalculations = useMemo(() => {
     const circumference = 220;
     const offset = circumference - (circumference * user.dailyGoalProgress / 100);
     const formattedXP = user.xp.toLocaleString();
     const userInitials = user.name.split(' ').map(n => n[0]).join('');
-    
     return { offset, formattedXP, userInitials };
   }, [user.dailyGoalProgress, user.xp, user.name]);
 
-  // Use useCallback for event handlers to prevent unnecessary re-renders
   const handleModuleClick = useCallback((moduleName) => {
     alert(`Opening ${moduleName} module...`);
   }, []);
@@ -86,7 +95,6 @@ const Homepage = () => {
     alert(`Navigating to ${section}...`);
   }, []);
 
-  // Memoize components that don't need frequent updates
   const StatsGrid = useMemo(() => (
     <div className="stats-grid">
       <div className="stat-item">
@@ -119,7 +127,7 @@ const Homepage = () => {
           cx="40" 
           cy="40" 
           r="35" 
-          stroke= "#6366f1" 
+          stroke="#6366f1" 
           strokeWidth="6" 
           fill="none" 
           strokeDasharray="220" 
@@ -147,14 +155,13 @@ const Homepage = () => {
             {progressCalculations.userInitials}
           </div>
           <button className="settings-btn" onClick={handleSettingsClick}>
-            ⚙️
+            <SettingsIcon className="h-6 w-6 text-gray-500" />
           </button>
         </div>
       </div>
 
       {/* Main Content Grid */}
       <div className="main-grid">
-        {/* Continue Learning Section */}
         <div className="continue-learning">
           <h2>Ready to Continue?</h2>
           <div className="lesson-info">
@@ -165,12 +172,13 @@ const Homepage = () => {
           </button>
         </div>
 
-        {/* Daily Goal & Stats */}
         <div className="goal-stats">
           <div className="daily-goal">
             <div className="goal-header">
               <div className="goal-title">Daily Goal</div>
-              <div className="streak">🔥 {user.streak} days</div>
+              <div className="streak">
+                <FlashOnIcon className="h-6 w-6" style={{ color: '#8e44ad' }} /> {user.streak} days
+              </div>
             </div>
             {ProgressRing}
           </div>
@@ -200,7 +208,7 @@ const Homepage = () => {
           <div className="word-display">{wordOfDay.word}</div>
           <div className="word-meaning">{wordOfDay.meaning}</div>
         </div>
-        
+
         <div className="feature-card achievements">
           <div className="feature-title">Recent Achievements</div>
           <div className="badges">
@@ -211,21 +219,23 @@ const Homepage = () => {
         </div>
 
         <div className="feature-card">
-          <div className="feature-title">📊 Leaderboard</div>
+          <div className="feature-title">
+            <PieChartIcon className="h-6 w-6" style={{ color: '#42A5F5' }} /> Leaderboard
+          </div>
           <div style={{ marginTop: '15px' }}>
             {leaderboard.map((player, index) => (
               <div key={index} className="leaderboard-item">
-                <span>{player.emoji} {player.name}</span>
-                <span className="leaderboard-xp">
-                  {player.xp.toLocaleString()} XP
-                </span>
+                <span>{player.icon} {player.name}</span>
+                <span className="leaderboard-xp">{player.xp.toLocaleString()} XP</span>
               </div>
             ))}
           </div>
         </div>
 
         <div className="feature-card">
-          <div className="feature-title">🌎 Did You Know?</div>
+          <div className="feature-title">
+            <PublicIcon className="h-6 w-6" style={{ color: '#42A5F5' }} /> Did You Know?
+          </div>
           <div className="cultural-fact">
             Spanish is spoken by over 500 million people worldwide and is the official language in 21 countries!
           </div>

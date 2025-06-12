@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { BellIcon, UserIcon, MoonIcon, ShieldCheckIcon } from '@heroicons/react/solid';
-import '../assets/styles/Settings.css'
+import SpeakerNotesIcon from '@mui/icons-material/SpeakerNotes';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import TuneIcon from '@mui/icons-material/Tune';
+import LockIcon from '@mui/icons-material/Lock';
+import '../assets/styles/Settings.css';
 
 const Settings = () => {
   const [settings, setSettings] = useState({
@@ -52,6 +55,10 @@ const Settings = () => {
     <div 
       className={`toggle-switch ${checked ? 'active' : ''}`}
       onClick={onChange}
+      role="switch"
+      aria-checked={checked}
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onChange(); }}
     >
       <div className="toggle-slider"></div>
     </div>
@@ -60,7 +67,7 @@ const Settings = () => {
   const SettingsSection = ({ icon: Icon, title, children }) => (
     <div className="settings-section">
       <div className="settings-section-header">
-        <Icon className="h-6 w-6 text-gray-500" />
+        <Icon className="material-icon" />
         <h3>{title}</h3>
       </div>
       <div className="settings-section-content">
@@ -89,7 +96,7 @@ const Settings = () => {
         </div>
 
         <div className="settings-content">
-          <SettingsSection icon={BellIcon} title="Notifications">
+          <SettingsSection icon={SpeakerNotesIcon} title="Notifications">
             <SettingsRow 
               label="Daily Reminders" 
               description="Get reminded to practice daily"
@@ -128,7 +135,7 @@ const Settings = () => {
             </SettingsRow>
           </SettingsSection>
 
-          <SettingsSection icon={UserIcon} title="Learning Preferences">
+          <SettingsSection icon={MenuBookIcon} title="Learning Preferences">
             <SettingsRow 
               label="Daily Goal" 
               description="Minutes per day"
@@ -181,7 +188,7 @@ const Settings = () => {
             </SettingsRow>
           </SettingsSection>
 
-          <SettingsSection icon={MoonIcon} title="Appearance">
+          <SettingsSection icon={TuneIcon} title="Appearance">
             <SettingsRow 
               label="Dark Mode" 
               description="Switch to dark theme"
@@ -223,7 +230,7 @@ const Settings = () => {
             </SettingsRow>
           </SettingsSection>
 
-          <SettingsSection icon={ShieldCheckIcon} title="Privacy & Security">
+          <SettingsSection icon={LockIcon} title="Privacy & Security">
             <SettingsRow 
               label="Profile Visibility" 
               description="Who can see your profile"
@@ -260,10 +267,8 @@ const Settings = () => {
         </div>
 
         <div className="settings-footer">
-          <button 
-            className="save-btn"
-          >
-            ✅ Save Changes
+          <button className="save-btn">
+            Save Changes
           </button>
         </div>
       </div>

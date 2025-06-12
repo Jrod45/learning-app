@@ -1,10 +1,22 @@
 import React, { useState, useMemo } from 'react';
-import { BookOpenIcon, CheckCircleIcon } from '@heroicons/react/solid';
 import '../assets/styles/Lessons.css';
+
+// MUI icons
+import WavingHandIcon from '@mui/icons-material/WavingHand';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+import FlightIcon from '@mui/icons-material/Flight';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
+import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
+import LockIcon from '@mui/icons-material/Lock';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const Lessons = () => {
   const [selectedUnit, setSelectedUnit] = useState(null);
-  
+
   const units = useMemo(() => [
     {
       id: 1,
@@ -14,7 +26,7 @@ const Lessons = () => {
       lessons: 8,
       completedLessons: 8,
       xp: 120,
-      icon: '👋'
+      icon: <WavingHandIcon />
     },
     {
       id: 2,
@@ -24,7 +36,7 @@ const Lessons = () => {
       lessons: 12,
       completedLessons: 12,
       xp: 180,
-      icon: '👨‍👩‍👧‍👦'
+      icon: <Diversity3Icon />
     },
     {
       id: 3,
@@ -34,7 +46,7 @@ const Lessons = () => {
       lessons: 10,
       completedLessons: 7,
       xp: 140,
-      icon: '🍽️'
+      icon: <RestaurantIcon />
     },
     {
       id: 4,
@@ -44,7 +56,7 @@ const Lessons = () => {
       lessons: 15,
       completedLessons: 6,
       xp: 90,
-      icon: '✈️'
+      icon: <FlightIcon />
     },
     {
       id: 5,
@@ -54,7 +66,7 @@ const Lessons = () => {
       lessons: 12,
       completedLessons: 0,
       xp: 0,
-      icon: '🛒'
+      icon: <ShoppingCartIcon />
     },
     {
       id: 6,
@@ -64,11 +76,11 @@ const Lessons = () => {
       lessons: 18,
       completedLessons: 0,
       xp: 0,
-      icon: '💼'
+      icon: <BusinessCenterIcon />
     }
   ], []);
 
-  const currentUnit = units[3]; // Travel & Transportation (current unit)
+  const currentUnit = units[3];
 
   const handleUnitClick = (unit) => {
     if (unit.progress > 0 || unit.id <= 4) {
@@ -104,17 +116,16 @@ const Lessons = () => {
               <span className="level-badge intermediate">{currentUnit.level}</span>
               <span className="lesson-count">{currentUnit.completedLessons}/{currentUnit.lessons} lessons</span>
             </div>
-             <div className="progress">
+            <div className="progress">
               <div className="progress-bar">
-              <div 
-                className="progress-fill" 
-                style={{ width: `${currentUnit.progress}%` }}
-              ></div>
+                <div
+                  className="progress-fill"
+                  style={{ width: `${currentUnit.progress}%` }}
+                ></div>
+              </div>
+              <p className='pro-text'>{currentUnit.progress}% complete</p>
             </div>
-            <p className='pro-text'>{currentUnit.progress}% complete</p>
-            </div>
-           </div>
-          
+          </div>
           <button className="continue-lesson-btn" onClick={handleStartLesson}>
             Continue Lesson →
           </button>
@@ -126,17 +137,17 @@ const Lessons = () => {
         <h2>All Units</h2>
         <div className="units-grid">
           {units.map((unit) => (
-            <div 
+            <div
               key={unit.id}
               className={`unit-card ${unit.progress === 0 && unit.id > 4 ? 'locked' : ''} ${unit.id === currentUnit.id ? 'current' : ''}`}
               onClick={() => handleUnitClick(unit)}
             >
               <div className="unit-card-header">
                 <div className="unit-icon">{unit.icon}</div>
-                {unit.progress === 0 && unit.id > 4 && <div className="lock-icon">🔒</div>}
-                {unit.progress === 100 && <div className="complete-icon">✓</div>}
+                {unit.progress === 0 && unit.id > 4 && <div className="lock-icon"><LockIcon fontSize="small" /></div>}
+                {unit.progress === 100 && <div className="complete-icon"><CheckCircleIcon fontSize="small" /></div>}
               </div>
-              
+
               <div className="unit-content">
                 <h3>{unit.title}</h3>
                 <div className="unit-details">
@@ -145,14 +156,14 @@ const Lessons = () => {
                   </span>
                   <span className="xp-earned">{unit.xp} XP</span>
                 </div>
-                
+
                 <div className="lesson-progress">
                   {unit.completedLessons}/{unit.lessons} lessons
                 </div>
-                
+
                 <div className="progress-bar">
-                  <div 
-                    className="progress-fill" 
+                  <div
+                    className="progress-fill"
                     style={{ width: `${unit.progress}%` }}
                   ></div>
                 </div>
@@ -167,21 +178,21 @@ const Lessons = () => {
         <h3>💡 Learning Tips</h3>
         <div className="tips-grid">
           <div className="tip-card">
-            <div className="tip-icon">⏰</div>
+            <div className="tip-icon"><AccessTimeIcon /></div>
             <div className="tip-content">
               <h4>Consistency is Key</h4>
               <p>Practice for 15-20 minutes daily for best results</p>
             </div>
           </div>
           <div className="tip-card">
-            <div className="tip-icon">🔄</div>
+            <div className="tip-icon"><AutorenewIcon /></div>
             <div className="tip-content">
               <h4>Review Regularly</h4>
               <p>Revisit previous units to reinforce your memory</p>
             </div>
           </div>
           <div className="tip-card">
-            <div className="tip-icon">🗣️</div>
+            <div className="tip-icon"><RecordVoiceOverIcon /></div>
             <div className="tip-content">
               <h4>Practice Speaking</h4>
               <p>Use pronunciation exercises to improve fluency</p>
